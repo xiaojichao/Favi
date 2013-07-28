@@ -1,0 +1,42 @@
+<body ng-app="app">
+	<div ui-view></div>
+	<script>
+	var page = angular.module('app', ['ui.state']);
+	page.config(function($stateProvider, $urlRouterProvider){
+		  //
+		  // For any unmatched url, send to /welcome
+		  $urlRouterProvider.otherwise("/welcome") 
+		  //
+		  // Now set up the states
+		  $stateProvider
+		    .state('welcome', {
+		        url: "/welcome",
+		        templateUrl: "themeplate/welcome.ejs",
+		        controller: function($scope,$http){
+		            $scope.items = ["A", "List", "Of", "Items"];
+		            $scope.blackie={"name":"blackie","age":29};
+		        }
+		    })
+		    .state('register', {
+		        url: "/register",
+		        templateUrl: "themeplate/register.ejs"
+		    })
+		    .state('login', {
+		        url: "/login",
+		        templateUrl: "themeplate/login.ejs"
+		    }) 
+		    .state('intro', {
+		        url: "/intro",
+		        templateUrl: "themeplate/intro.ejs"
+		    })
+		    .state('member', {
+		        url: "/member",
+		        templateUrl: "themeplate/member/index.ejs"
+		    })
+		    .state('page', {
+		        url: "/page",
+		        templateUrl: "themeplate/page/index.ejs"
+		    })
+		})
+	</script>
+</body>

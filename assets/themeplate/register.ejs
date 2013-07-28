@@ -1,0 +1,31 @@
+<div class="container-narrow" ng-controller="PageCtrl">	
+	<div ng-include src="'themeplate/header.ejs'"></div>
+    <div class="jumbotron">
+	    <h1>Sign up Today!</h1>
+    </div>
+    <form class="form-signup" ng-submit="doSignUp();">
+	    <input type="text" class="input-block-level" pattern="^[A-Za-z0-9_]{1,15}$" required ng-model="user.name"  placeholder="Name">
+	    <input type="email" class="input-block-level" required ng-model="user.email"  placeholder="Email address">
+	    <input type="password" class="input-block-level" required ng-model="user.password" placeholder="Password">
+	    <input type="password" class="input-block-level" required ng-model='user.password_verify' placeholder='confirm password'>
+		<label class="checkbox">
+			<input type="checkbox" value="remember-me" required> 我同意Favi條款
+		</label>
+	    <button class="btn btn-large btn-primary" type="submit">Sign up</button>
+    </form>
+	<div ng-include src="'themeplate/footer.ejs'"></div>
+</div>
+<script>
+	function PageCtrl($scope,$http){
+		$scope.doSignUp=function(){
+			$http.post("../register",$scope.user).then(function(response) {
+			   console.log(response);
+			}, function(response) {
+				console.log(response);
+			});
+			// alert($scope.user.name + "," + $scope.user.email + "," + $scope.user.password);
+			// var member=require('javascripts/mongoconnect').getMember();
+			// alert(member);
+		};
+	}
+</script>
